@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Will's Library</h1>
 <table id="table">
-    <caption>Data about books I have read or want to read.</caption>
+    <caption>(Data about books I have read or want to read.)</caption>
     <thead>
         <tr>
             <th>Title</th>
@@ -21,7 +22,26 @@
     </thead>
     <tbody class="tablebody"></tbody>
 </table>
-<form action="" method="post"></form>
+<form method="post" class="form" name="addbookform" onsubmit="addRow()">
+    <legend>Add a new Book!</legend>
+    <fieldset>
+        <div class="formdiv"><label for=""></label>
+            <input type="text" placeholder="Title..." name="title" id="title">
+        </div>
+        <div class="formdiv"><label for=""></label>
+            <input type="text" placeholder="Author..." name="author" id="author">
+        </div>
+        <div class="formdiv"><label for=""></label>
+            <input type="number" placeholder="Pages..." name="pages" id="pages">
+        </div>
+        <div class="formdiv"><label for=""></label>
+            <input type="text" placeholder="Have you read it or not.." name="read" id="read">
+        </div>
+        <div>
+            <input type="button" value="Add Book" onclick="addRow()" id="add">
+        </div>
+    </fieldset>
+</form>
 <script src="library.js"></script>
 </body>
 </html>

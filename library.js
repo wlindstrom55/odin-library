@@ -1,5 +1,6 @@
 
-let myLibrary = []
+let myLibrary = [];
+let count = 1; //counter for purposes of ID names
 const tbod = document.querySelector('.tablebody')
 
 function Book(title, author, pages, read) {
@@ -7,48 +8,92 @@ function Book(title, author, pages, read) {
     this.author = author
     this.pages = pages
     this.read = read
-    //this.info = function() {return `${title} by ${author}, ${pages} pages, ${read}`}
 }
 
-//test books
-const dune = new Book('Dune', 'Frank Herbert', 500, 'Yes');
-const got = new Book('Game of Thrones', 'GRR Martin', 1000, 'Yes');
-const cien = new Book('Cien Anos de Soledad', 'Gabriel Garcia Marquez', 400, 'Yes');
+//sample books
+const dune = new Book('Dune', 'Frank Herbert', 412, 'Yes');
+const got1 = new Book('A Song of Ice and Fire', 'George R.R. Martin', 694, 'Yes');
+const got2 = new Book('Clash of Kings', 'George R.R. Martin', 761, 'Yes');
+const cien = new Book('Cien A&ntilde;os de Soledad', 'Gabriel Garc&iacute;a M&aacute;rquez', 417, 'Yes');
+//ene = &ntilde; a w/ accent = &aacute;
 const star = new Book('Starship Troopers', 'Robert A. Heinlein', 263, 'Yes');
-const it = new Book('IT', 'Stephen King', 1078, 'Yes');
-addBookToLibrary(it);
+const it = new Book('IT', 'Stephen King', 1138, 'Yes');
+const sl = new Book('Slaughterhouse-Five', 'Kurt Vonnegut', 240, 'Yes');
+const water = new Book('Watership Down', 'Richard Adams', 413, 'Yes');
+const hob = new Book('The Hobbit', 'J.R.R. Tolkien', 310, 'Yes');
+
 addBookToLibrary(dune);
-addBookToLibrary(got);
+addBookToLibrary(got1);
+addBookToLibrary(got2);
 addBookToLibrary(cien);
 addBookToLibrary(star);
+addBookToLibrary(it);
+addBookToLibrary(sl);
+addBookToLibrary(water);
+addBookToLibrary(hob);
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
-function removeRow(rowNum) {
+function removeRow(rowNum) { //really should be set up to remove object from array..
     document.getElementById('table').deleteRow(rowNum);
 }
 
-function toggleReadStatus(rowNum) {
+function toggleReadStatus(rowNum) { //really should be set up to toggle the book's read status on Book prototype instance
    let a =  document.getElementById(`read${rowNum}`);
-   if(a.innerHTML === 'Yes') {
-   a.innerHTML = 'No';
+   if(a.innerHTML === 'In progress') {
+   a.innerHTML = 'Yes';
+   } else if(a.innerHTML == 'Yes') {
+    a.innerHTML = 'No';
    } else if(a.innerHTML == 'No') {
-    a.innerHTML = 'Yes';
+    a.innerHTML = 'In progress';
+   } else {
+    a.innerHTML = 'No';
    }
 }
 
-//now write a function that loops through the array and displays each book on the page. You could display them 
-//in some sort of table, or each on their own 'card'.
-//for..in doesn't work here, because it's meant to enumerate object properties, not objects themselves.
-    //we use for..of instead!
+function addRow() { //should change this to interact with array..make an object?...then add to array..
+    const row = document.createElement('tr');
+    var td1 = document.createElement('td');
+    var td2 = document.createElement('td');
+    var td3 = document.createElement('td');
+    var td4 = document.createElement('td');
+    td1.innerHTML = document.getElementById('title').value;
+    td2.innerHTML = document.getElementById('author').value;
+    td3.innerHTML = document.getElementById('pages').value;
+    td4.innerHTML = document.getElementById('read').value;
+    td4.setAttribute('id', `read${count}`);
+    td4.classList.add('bookread');
+    const readButton2 = document.createElement('button');
+            readButton2.classList.add('readbutton');
+            readButton2.innerHTML = 'Toggle Read Status';
+            readButton2.addEventListener('click', () => {
+                toggleReadStatus(row.rowIndex);
+            })
+    const remButton = document.createElement('button');
+            remButton.innerHTML = 'Remove';
+            remButton.classList.add('rembutton');
+            remButton.addEventListener('click', () => {
+                removeRow(row.rowIndex);
+            }) 
+    row.append(td1);
+    row.append(td2);
+    row.append(td3);
+    row.append(td4);
+    row.append(readButton2);
+    row.append(remButton);
+    tbod.append(row);
+    count++;
+}
+
 function iterate() {
-    let count = 1;
+    //for..in doesn't work here, because it's meant to enumerate object properties, not objects themselves.
+    //we use for..of instead!
     for(let book of myLibrary) {
-        //make a new tr, with td for each data point, remove button at end of row.
+        //make a new tr, with td for each data point
         const bookRow = document.createElement('tr');
-        tbod.append(bookRow); //add row to table body
+            tbod.append(bookRow); //add row to table body
         const bookTitles = document.createElement('td');
             bookTitles.classList.add('booktitle');
             bookTitles.innerHTML = book.title;
@@ -62,23 +107,22 @@ function iterate() {
             bookRow.append(bookPages);
         const bookRead = document.createElement('td');
             bookRead.setAttribute('id', `read${count}`);
-            //bookRead.classList.add(`bookread${count}`);
+            bookRead.classList.add('bookread');
             bookRead.innerHTML = book.read;
             bookRow.append(bookRead);
-        //maybe a button here to toggle the status of 'have i read it'
         const readButton = document.createElement('button');
+            readButton.classList.add('readbutton');
             readButton.innerHTML = 'Toggle Read Status';
             readButton.addEventListener('click', () => {
-                // let a = document.getElementsByClassName(`.readbutton${bookRow.rowIndex}`);
-                // a.innerHTML = 'No';
                 toggleReadStatus(bookRow.rowIndex);
             }) 
             bookRow.append(readButton);
         const remButton = document.createElement('button');
             remButton.innerHTML = 'Remove';
+            remButton.classList.add('rembutton');
             remButton.addEventListener('click', () => {
-                removeRow(bookRow.rowIndex); //must be the bookrow rowindex, not the button rowindex.
-            })  //otherwise it will just delete rows starting at the top. Why?
+                removeRow(bookRow.rowIndex);
+            })
             bookRow.append(remButton);
         count++;
     }
