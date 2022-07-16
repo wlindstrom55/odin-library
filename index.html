@@ -8,22 +8,24 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Will's Library</h1>
+    <div id="head">
+        <h1>Will's Library</h1>
+    </div>
 <table id="table">
-    <caption>(Data about books I have read or want to read.)</caption>
+    <caption>(Data about books I have read or want to read)</caption>
     <thead>
         <tr>
             <th>Title</th>
             <th>Author</th>
             <th>Pages</th>
             <th>Have I read it?</th>
-            <th><!--header cell for remove buttons--></th>
+            <th id="options">Options</th>
         </tr>
     </thead>
     <tbody class="tablebody"></tbody>
 </table>
 <form method="post" class="form" name="addbookform" onsubmit="addRow()">
-    <legend>Add a new Book!</legend>
+    <legend>Add a new Book:</legend>
     <fieldset>
         <div class="formdiv"><label for=""></label>
             <input type="text" placeholder="Title..." name="title" id="title">

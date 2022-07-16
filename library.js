@@ -53,6 +53,11 @@ function toggleReadStatus(rowNum) { //really should be set up to toggle the book
    }
 }
 
+//im envisioning this method as a way to reset the table quick before calling iterate again
+function clearTableBody() {
+    
+}
+
 function addRow() { //should change this to interact with array..make an object?...then add to array..
     const row = document.createElement('tr');
     var td1 = document.createElement('td');
