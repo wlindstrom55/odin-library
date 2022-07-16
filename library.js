@@ -23,36 +23,12 @@ Book.prototype.toggleRead = function(book) {
     iterate();
 }
 
-// function addBookToLibrary(book) {
-//     myLibrary.push(book);
-// }
-
-function removeBook(index) { //really should be set up to remove object from array..
-    //document.getElementById('table').deleteRow(rowNum);
-    //would need to remove the object, then refresh the iterator
+function removeBook(index) {
     myLibrary.splice(index, 1);
     iterate();
-    //reset(changedLib);
-    //iterate();
 }
 
-function toggleReadStatus(rowNum) { 
-    //really should be set up to toggle the book's read status on Book prototype instance
-    //so that it's the same function across all Books.
-    //as it is now this code really only reads and then changes the DOM
-   let a =  document.getElementById(`read${rowNum}`);
-   if(a.innerHTML === 'In progress') {
-   a.innerHTML = 'Yes';
-   } else if(a.innerHTML == 'Yes') {
-    a.innerHTML = 'No';
-   } else if(a.innerHTML == 'No') {
-    a.innerHTML = 'In progress';
-   } else {
-    a.innerHTML = 'No';
-   }
-}
-
-function addRow() { //should change this to interact with array..make an object?...then add to array..
+function addRow() {
     //should construct a new object based on inputs, put that object into the array, and then iterate.
     let title = document.getElementById('title').value;
     let author = document.getElementById('author').value;
@@ -60,41 +36,7 @@ function addRow() { //should change this to interact with array..make an object?
     let read = document.getElementById('read').value;
     let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
-    
-    // const row = document.createElement('tr');
-    // var td1 = document.createElement('td');
-    // var td2 = document.createElement('td');
-    // var td3 = document.createElement('td');
-    // var td4 = document.createElement('td');
-    // td4.setAttribute('id', `read${count}`);
-    // td4.classList.add('bookread'); //for css styling
-//old. directly assigned the value of the new cells by what the inner content of the inputs were
-    // td1.innerHTML = document.getElementById('title').value;
-    // td2.innerHTML = document.getElementById('author').value;
-    // td3.innerHTML = document.getElementById('pages').value;
-    // td4.innerHTML = document.getElementById('read').value;
-    
-    // const readButton2 = document.createElement('button');
-    //         readButton2.classList.add('readbutton');
-    //         readButton2.innerHTML = 'Toggle Read Status';
-    //         readButton2.addEventListener('click', () => {
-    //             toggleReadStatus(row.rowIndex);
-    //         })
-    // const remButton = document.createElement('button');
-    //         remButton.innerHTML = 'Remove';
-    //         remButton.classList.add('rembutton');
-    //         remButton.addEventListener('click', () => {
-    //             removeRow(row.rowIndex);
-    //         }) 
-    // row.append(td1);
-    // row.append(td2);
-    // row.append(td3);
-    // row.append(td4);
-    // row.append(readButton2);
-    // row.append(remButton);
-    // tbod.append(row);
     iterate();
-    // count++;
 }
 
 function iterate() {
