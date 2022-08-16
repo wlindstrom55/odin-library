@@ -96,3 +96,9 @@ fieldset {
     color: darkred;
     width: 100px;
 }
+
+input:focus:invalid { /*note that the focus pseudo-class represents an element that has received 'focus'*/
+    /*Otherwise, this CSS would be applied to the inputs by default, which we don't want*/
+    border-color: #900;
+    background-color: #FDD;
+}

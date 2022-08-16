@@ -9,23 +9,24 @@
 </head>
 <body>
     <h1>Will's Library</h1>
-    <form class="form">
+    <form class="form" onsubmit="addRow(); return false"> <!--'return false' prevents browser from refreshing after valid form submission-->
+        <!--also note you need a semi-colon after the method invocation, before the return false-->
         <legend>(Data about books I have read or want to read...feel free to add another book!)</legend>
         <fieldset>
-            <div class="formdiv"><label for=""></label>
-                <input type="text" placeholder="Title..." name="title" id="title">
+            <div class="formdiv"><!--<label for=""></label> note: not using labels-->
+                <input type="text" placeholder="Title..." name="title" id="title" required>
             </div>
-            <div class="formdiv"><label for=""></label>
-                <input type="text" placeholder="Author..." name="author" id="author">
+            <div class="formdiv"><!--<label for=""></label>-->
+                <input type="text" placeholder="Author..." name="author" id="author" required>
             </div>
-            <div class="formdiv"><label for=""></label>
-                <input type="number" placeholder="Pages..." name="pages" id="pages">
+            <div class="formdiv"><!--<label for=""></label>-->
+                <input type="number" placeholder="Pages..." name="pages" id="pages" min="1" required>
             </div>
-            <div class="formdiv"><label for=""></label>
-                <input type="text" placeholder="Have you read it or not.." name="read" id="read">
+            <div class="formdiv"><!--<label for=""></label>-->
+                <input type="text" placeholder="Have you read it or not.." name="read" id="read" required>
             </div>
             <div>
-                <input type="button" value="Click to Add" onclick="addRow()" id="add">
+                <button type="submit" value="Click to Add" id="add">Submit</button> <!--onclick="addRow()", also was originally an input...idk why-->
             </div>
         </fieldset>
     </form>

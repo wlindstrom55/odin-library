@@ -10,7 +10,7 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-Book.prototype.toggleRead = function(book) {
+Book.prototype.toggleRead = function(book) { //declared on prototype
     if(book.read == 'In progress') {
         book.read = 'Yes';
     } else if(book.read == 'Yes') {
