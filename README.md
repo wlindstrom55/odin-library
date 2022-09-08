@@ -5,4 +5,4 @@
 - I have also returned to this project to add some simmple built-in HTML form validation (8/15/22)
 - As of now the project will not contain a back-end. But maybe later.
 - Link to instructions here: <https://www.theodinproject.com/lessons/node-path-javascript-library>
-- Live page here: <https://wlindstrom55.github.io/TOP_Library/>
+- Live page here: https://wlindstrom55.github.io/odin-library/
